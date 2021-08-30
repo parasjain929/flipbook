@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+  
+
+<head>
+    <title> Turn.js 5th release - HTML5 Flipbook </title>
+    <meta name="viewport" content="width = device-width, minimum-scale=1, maximum-scale=1, user-scalable = no" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <!-- External JS dependencies -->
+    <script type="text/javascript" src="assets/js/jquery-2.0.3.min.js"></script>
+    <script type="text/javascript" src="assets/js/underscore-min.js"></script>
+    <script type="text/javascript" src="assets/js/backbone-min.js"></script>
+    
+    <!-- Turn.js UI Kit -->
+    <script type="text/javascript" src="assets/js/turn.min.js"></script>
+    
+    <!-- App dependencies -->
+    <script type="text/javascript" src="assets/js/app.js"></script>
+
+
+     <!-- External CSS dependencies -->
+    <link type="text/css" rel="stylesheet" href="assets/css/font-awesome.min.css"></link>
+    <link rel="icon" type="image/png" href="assets/img/favicon0cc1.png?a" />
+    <link href='http://fonts.googleapis.com/css?family=Carrois+Gothic+SC' rel='stylesheet' type='text/css'>
+
+    <!-- App CSS dependencies -->
+    <link type="text/css" rel="stylesheet" href="assets/css/main.css"></link>
+
+    <style type="text/css">
+      .page-1 .s1{
+        -webkit-transform: translateY(100px);
+        -webkit-transition: all 1.5s;
+        opacity: 0;
+      }
+      .page-1 .s2{
+        -webkit-transform: translateY(100px);
+        -webkit-transition: all 1s;
+        -webkit-transition-delay: 0.5s;
+        opacity: 0;
+        font-family: 'Carrois Gothic SC', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        font-size: 40px;
+        text-align: center;
+        color: white;
+      }
+    
+      .page-1.animation-on .s1{
+        -webkit-transform: translateY(0px);
+        opacity: 1;
+      }
+      .page-1.animation-on .s2{
+        -webkit-transform: translateY(0px);
+        opacity: 1;
+      }
+
+    </style>
+  </head>
+<body>
+  <div class="catalog-app">
+  <div id="viewer">
+    <div id="flipbook" class="ui-flipbook">
+          <div><img src="pages/1.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/2.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/3.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/4.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/5.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/6.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/7.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/8.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/9.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/10.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/11.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/12.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/13.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/14.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/15.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/16.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/17.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/18.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/19.jpg" alt="" style="width:100%;height:100%"; /></div>
+          <div><img src="pages/20.jpg" alt="" style="width:100%;height:100%"; /></div>
+      <a ignore="1" class="ui-arrow-control ui-arrow-next-page"></a>
+      <a ignore="1" class="ui-arrow-control ui-arrow-previous-page"></a>
+    </div>
+  </div>
+
+
+  <!-- controls -->
+  <div id="controls">
+    <div class="all">
+        <div class="ui-slider" id="page-slider">
+        <div class="bar">
+          <div class="progress-width">
+            <div class="progress">
+              <div class="handler"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ui-options" id="options">
+        <a class="ui-icon" id="ui-icon-table-contents">
+          <i class="fa fa-bars"></i>
+        </a>
+        <a class="ui-icon show-hint" title="Miniatures" id="ui-icon-miniature">
+          <i class="fa fa-th"></i>
+        </a>
+        <a class="ui-icon" id="ui-icon-zoom">
+          <i class="fa fa-file-o"></i>
+        </a>
+        <a class="ui-icon show-hint" title="Share" id="ui-icon-share">
+          <i class="fa fa-share"></i>
+        </a>
+        <a class="ui-icon show-hint" title="Full Screen" id="ui-icon-full-screen">
+          <i class="fa fa-expand"></i>
+        </a>
+        <a class="ui-icon show-hint" id="ui-icon-toggle">
+          <i class="fa fa-ellipsis-h"></i>
+        </a>
+      </div>
+
+      <!-- zoom slider -->
+      <div id="zoom-slider-view" class="zoom-slider">
+          <div class="bg">
+             <div class="ui-slider" id="zoom-slider">
+              <div class="bar">
+                <div class="progress-width">
+                  <div class="progress">
+                    <div class="handler"></div>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- / zoom slider -->
+    </div>
+    
+    <div id="ui-icon-expand-options">
+      <a class="ui-icon show-hint">
+        <i class="fa fa-ellipsis-h"></i>
+      </a>
+    </div>
+
+  </div>
+  <!-- / controls -->
+
+  <!-- miniatures -->
+  <div id="miniatures" class="ui-miniatures-slider">
+    
+  </div>
+  <!-- / miniatures -->
+
+<script type="text/javascript">
+  // Change these settings
+
+//var aud= new Audio("./audio/page-flip-01a.mp3");
+//$("#flipbook").turn({
+///      when: { 
+//      turning: function(event, page, pageObj) { 
+//        aud.play();
+//      }
+//     }
+//    });
+    
+  FlipbookSettings = {
+    options: {
+      width: 1280,
+      height: 920
+    },
+
+    shareMessage: 'Introducing turn.js 5 - HTML5 Library for Flipbooks.',
+
+    table: [
+      {text: 'Cover', page: 1},
+      {text: 'Introduction', page: 2},
+      {text: 'Getting Started', page: 4},
+      {text: 'Reference', page: 6},
+      {text: 'Pre-order', page: 8},
+      {text: 'About', page: 12}
+    ],
+
+    pageFolder: 'content/catalog/'
+  };
+
+  $(window).load(function(event) {
+    $("#flipbook .page-1").addClass('animation-on');
+  });
+  </script>
+  
+  </body>
+
+
+</html>
