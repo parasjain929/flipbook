@@ -32,6 +32,9 @@ var SingleView = Backbone.View.extend({},
 /* * Flipbook View * */
 
 var aud= new Audio("page-flip-01a.mp3");
+$('#flipbook').on('turning', function(){
+aud.play();
+} ); 
 var FlipbookView = SingleView.extend({
   el: '#flipbook',
   events: {
@@ -69,9 +72,6 @@ var FlipbookView = SingleView.extend({
       smartFlip: true,
       autoScaleContent: true,
       swipe: true,
-      when: { 
-      turning: function(event, page, pageObj) { 
-        aud.play();}}
     }, settings.options);
 
     this.$el.turn(options);
