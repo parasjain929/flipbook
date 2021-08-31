@@ -32,8 +32,7 @@ var SingleView = Backbone.View.extend({},
 /* * Flipbook View * */
 
 var aud= new Audio("page-flip-01a.mp3");
-$('#flipbook').on('turning', function(){
-aud.play();
+$('#flipbook').on('turning',{aud.play();
 } ); 
 var FlipbookView = SingleView.extend({
   el: '#flipbook',
